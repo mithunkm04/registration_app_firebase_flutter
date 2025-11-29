@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+class Forgot extends StatelessWidget {
+  const Forgot({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 40,),
+            Text(
+              "Forgot Password",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+            SizedBox(height: 20,),
+            Text("send link to your account",style: TextStyle(
+                color: Colors.grey,
+            ),),
+            SizedBox(height: 15,),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text("Email", style: TextStyle(color: Colors.black)),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),SizedBox(height: 15,),
+            SizedBox(
+              height: 60,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                  side: BorderSide(color: Colors.black),
+                ),
+                onPressed: () {},
+                child: Text("Send LInk", style: TextStyle(fontSize: 20)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

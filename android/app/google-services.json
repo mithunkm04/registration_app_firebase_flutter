@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "958533272830",
+    "project_id": "registration-backend-9201c",
+    "storage_bucket": "registration-backend-9201c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958533272830:android:58306b5d77c2772d2091af",
+        "android_client_info": {
+          "package_name": "com.example.registration_app_firebase_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvsSqwl5cK_9IgvvwQ2deaIMluy3qAdLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
