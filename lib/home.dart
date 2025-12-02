@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -6,7 +7,11 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Welcome",style: TextStyle(fontSize: 30),),
+      backgroundColor: Colors.green,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Center(child: Lottie.asset("assets/Welcome.json"))],
+      ),
     );
   }
 }

@@ -22,7 +22,7 @@ class _SignUpState extends State<SignUp> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Form(
+          child: Form(key: formkey,
             child: Column(
               children: [
                 SizedBox(height: 50),
@@ -57,16 +57,6 @@ class _SignUpState extends State<SignUp> {
                   },
                   controller: usernamecontroller,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isvisible = !isvisible;
-                        });
-                      },
-                      icon: isvisible
-                          ? Icon(Icons.visibility_off_outlined)
-                          : Icon(Icons.visibility),
-                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -92,22 +82,13 @@ class _SignUpState extends State<SignUp> {
                   },
                   controller: emailcontroller,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isvisible = !isvisible;
-                        });
-                      },
-                      icon: isvisible
-                          ? Icon(Icons.visibility_off_outlined)
-                          : Icon(Icons.visibility),
-                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
+                    
                   ),
                 ),
                 SizedBox(height: 15),
@@ -143,9 +124,10 @@ class _SignUpState extends State<SignUp> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
+                      borderSide: BorderSide(color: Colors.black)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(4), borderSide: BorderSide(color: Colors.black)
                     ),
                   ),
                 ),
@@ -206,10 +188,7 @@ class _SignUpState extends State<SignUp> {
                           context: context,
                         );
                       }
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUp()),
-                      );
+                    
                     },
                     child: Text("Sign Up", style: TextStyle(fontSize: 20)),
                   ),

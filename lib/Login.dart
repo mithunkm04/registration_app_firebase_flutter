@@ -11,17 +11,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController emailcontroller=TextEditingController();
-  TextEditingController passwordcontroller=TextEditingController();
-  final formkey =GlobalKey<FormState>();
-  bool isvisible=true;
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  final formkey = GlobalKey<FormState>();
+  bool isvisible = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 20,right: 20),
-        child: Form(key: formkey,
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Form(
+          key: formkey,
           child: Column(
             children: [
               SizedBox(height: 50),
@@ -34,24 +35,18 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: 30),
-              Text("Login to your account", style: TextStyle(color: Colors.grey)),
+              Text(
+                "Login to your account",
+                style: TextStyle(color: Colors.grey),
+              ),
               SizedBox(height: 30),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Text("Email", style: TextStyle(color: Colors.black)),
               ),
               TextFormField(
+                controller: emailcontroller,
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isvisible = !isvisible;
-                        });
-                      },
-                      icon: isvisible
-                          ? Icon(Icons.visibility_off_outlined)
-                          : Icon(Icons.visibility),
-                    ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
@@ -66,17 +61,19 @@ class _LoginState extends State<Login> {
                 child: Text("Password", style: TextStyle(color: Colors.black)),
               ),
               TextFormField(
+                obscureText: isvisible,
+                controller: passwordcontroller,
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isvisible = !isvisible;
-                        });
-                      },
-                      icon: isvisible
-                          ? Icon(Icons.visibility_off_outlined)
-                          : Icon(Icons.visibility),
-                    ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isvisible = !isvisible;
+                      });
+                    },
+                    icon: isvisible
+                        ? Icon(Icons.visibility_off_outlined)
+                        : Icon(Icons.visibility),
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
@@ -110,7 +107,13 @@ class _LoginState extends State<Login> {
                     foregroundColor: Colors.white,
                     side: BorderSide(color: Colors.black),
                   ),
-                  onPressed: () {login(email: emailcontroller.text, password: passwordcontroller.text, context: context);},
+                  onPressed: () {
+                    login(
+                      email: emailcontroller.text.trim(),
+                      password: passwordcontroller.text,
+                      context: context,
+                    );
+                  },
                   child: Text("Login", style: TextStyle(fontSize: 20)),
                 ),
               ),
@@ -129,13 +132,18 @@ class _LoginState extends State<Login> {
                         MaterialPageRoute(builder: (context) => SignUp()),
                       );
                     },
-                    child: Text("Sign Up", style: TextStyle(color: Colors.black)),
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ],
               ),
               SizedBox(height: 40),
-          
-              Expanded(child: Image.asset("assets/login.jpg", height: 400, width: 400)),
+
+              Expanded(
+                child: Image.asset("assets/login.jpg", height: 400, width: 400),
+              ),
             ],
           ),
         ),
