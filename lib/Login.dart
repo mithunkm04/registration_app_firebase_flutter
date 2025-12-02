@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController passwordcontroller=TextEditingController();
   final formkey =GlobalKey<FormState>();
+  bool isvisible=true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,16 @@ class _LoginState extends State<Login> {
               ),
               TextFormField(
                 decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
@@ -56,6 +67,16 @@ class _LoginState extends State<Login> {
               ),
               TextFormField(
                 decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),

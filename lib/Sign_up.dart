@@ -14,7 +14,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController usernamecontroller = TextEditingController();
   TextEditingController confirm_password = TextEditingController();
-  bool isvisible=true;
+  bool isvisible = true;
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -52,11 +52,21 @@ class _SignUpState extends State<SignUp> {
                     if (value == null || value.trim().isEmpty) {
                       return ("Username is required");
                     }
-                   
+
                     return null;
                   },
                   controller: usernamecontroller,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -74,13 +84,24 @@ class _SignUpState extends State<SignUp> {
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return ("Email is required");
-                    } if (!value.contains("@")) {
+                    }
+                    if (!value.contains("@")) {
                       return ("Email is not valid");
                     }
                     return null;
                   },
                   controller: emailcontroller,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -97,21 +118,29 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-                TextFormField(validator: (value) {
-                  
-                
-                  if(value==null||value.trim().isEmpty){
-                    return("Password is required");
-                  }
-                  if(value.length<=8){
-                    return("password must be 8 characters");
-                  }
-                  return null;
-                },
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return ("Invalid password");
+                    }
+                    if (value.length < 8) {
+                      return ("password must contain 8 characters");
+                    }
+                    return null;
+                  },
+                  obscureText: isvisible,
                   controller: passwordcontroller,
-                  decoration: InputDecoration(suffixIcon: IconButton(onPressed: setState(() {
-                  isvisible =!isvisible;  
-                  });}, icon: i),
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -128,16 +157,27 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-                TextFormField(validator: (value) {
-                  if(value == null||value.trim().isEmpty){
-                    return ("Enter Password");
-                  }
-                  if(value!=passwordcontroller.text){
-                    return ("invalid password");
-                  }
-                },
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return ("confirm the  Password");
+                    }
+                    if (value != passwordcontroller.text) {
+                      return ("Enter the same as previous password");
+                    }
+                  },
                   controller: confirm_password,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -156,15 +196,20 @@ class _SignUpState extends State<SignUp> {
                       foregroundColor: Colors.white,
                       side: BorderSide(color: Colors.black),
                     ),
-                    onPressed: () {if(formkey.currentState!.validate()){
-                      register(
-                        username: usernamecontroller.text,
-                        password: passwordcontroller.text,
-                        email: emailcontroller.text,
-                        confirm_password: confirm_password.text,
-                        context: context,
-                      );}
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => SignUp()),);
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        register(
+                          username: usernamecontroller.text,
+                          password: passwordcontroller.text,
+                          email: emailcontroller.text,
+                          confirm_password: confirm_password.text,
+                          context: context,
+                        );
+                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUp()),
+                      );
                     },
                     child: Text("Sign Up", style: TextStyle(fontSize: 20)),
                   ),

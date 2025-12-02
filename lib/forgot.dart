@@ -10,15 +10,17 @@ class Forgot extends StatefulWidget {
 }
 
 class _ForgotState extends State<Forgot> {
-  TextEditingController emailcontroller=TextEditingController();
-  final formkey=GlobalKey<FormState>();
+  bool isvisible = true;
+  TextEditingController emailcontroller = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20,right: 20),
-          child: Form(key: formkey,
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Form(
+            key: formkey,
             child: Column(
               children: [
                 SizedBox(height: 40),
@@ -43,6 +45,16 @@ class _ForgotState extends State<Forgot> {
                 TextFormField(
                   controller: emailcontroller,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off_outlined)
+                          : Icon(Icons.visibility),
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -61,7 +73,9 @@ class _ForgotState extends State<Forgot> {
                       foregroundColor: Colors.white,
                       side: BorderSide(color: Colors.black),
                     ),
-                    onPressed: () {forgot(email: emailcontroller.text);},
+                    onPressed: () {
+                      reset(email: emailcontroller.text, context: context);
+                    },
                     child: Text("Send LInk", style: TextStyle(fontSize: 20)),
                   ),
                 ),
@@ -80,7 +94,10 @@ class _ForgotState extends State<Forgot> {
                           MaterialPageRoute(builder: (context) => Login()),
                         );
                       },
-                      child: Text("Login", style: TextStyle(color: Colors.black)),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ],
                 ),

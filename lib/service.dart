@@ -12,9 +12,13 @@ Future<void> register({
   try {
     UserCredential userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("user created succesfully")));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("user created succesfully")));
   } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }
 
@@ -29,21 +33,29 @@ Future<void> login({
       password: password,
     );
     ScaffoldMessenger.of(
-      context
+      context,
     ).showSnackBar(SnackBar(content: Text("Logined succesfully")));
     Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
   } catch (e) {
     ScaffoldMessenger.of(
-      context
+      context,
     ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }
 
-Future<void> forgot({required String email}) async {
+Future<void> reset({
+  required String email,
+  required,
+  required BuildContext context,
+}) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email send succefully")));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Email send successfully")));
   } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }
